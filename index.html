@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,9 @@
 </head>
 <body>
     <main id="main">
-        <h1 class="title">Weather App</h1>
         <section class="mode">
-            <button class="switch">Dark theme</button>
+            <h1 class="title">Forecast</h1>
+            <img src="#" id="mode-img" alt="change mode" title="change mode"/>
         </section>
         <section class="weather">
             <section class="search">
@@ -24,22 +24,23 @@
                 ><i class="fa-solid fa-magnifying-glass"></i></button>
             </section>
             <section class="weather-info">
-                <img src="img/cloud.png" alt="weather-image" class="main-img"/>
-                <h2 class="city-info">San Salvador</h2>
-                <h3 class="temp">22°C</h3>
+                <img src="#" alt="weather-image" class="main-img"/>
+                <h2 class="city-info"></h2>
+                <h3 class="temp"></h3>
+                <h4 class="condition"></h4>
                 <div class="details">
                     <div class="humidity">
-                        <img src="img/humidity.png" alt="humdity" />
+                        <img src="img/humidity.png" alt="humdity" class="humidity-img"/>
                         <div id="humidity-info">
-                            <p>50km/h</p>
-                            <p>Windy</p>
+                            <p class="humidity-data"></p>
+                            <p>Humidity</p>
                         </div>
                     </div>
                     <div class="wind">
-                        <img src="img/wind.png" alt="windy" />
+                        <img src="img/wind.png" alt="windy" class="wind-img"/>
                         <div id="wind-info">
-                            <p>50km/h</p>
-                            <p>Windy</p>
+                            <p class="wind-data"></p>
+                            <p>Wind speed</p>
                         </div>
                     </div>
                 </div>
