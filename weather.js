@@ -28,9 +28,7 @@ function mode(){
 modeImg.addEventListener('click', ()=>{
     mainBody.classList.toggle('main-dark');
     title.classList.toggle('title-dark');
-    (modeImg.src == 'img/moon.png') ? 
-        modeImg.src = 'img/moon.png' :
-        modeImg.src = 'img/sun.png';
+    mode();
 });
 
 search.addEventListener('click', () => {
@@ -49,7 +47,6 @@ const apiURL = 'https://api.openweathermap.org/data/2.5/weather?&units=metric&q=
 let getInfo = async (city) => {
     let response = await fetch(apiURL + city + `&appid=${apiKey}`);
     let data = await response.json();
-    console.log(data);
 
     cityName.innerHTML = data.name;
     temperature.innerHTML = Math.round(data.main.temp) + '°C';
@@ -57,19 +54,11 @@ let getInfo = async (city) => {
     humidity.innerHTML = data.main.humidity + '%';
     windSpeed.innerHTML = data.wind.speed + ' km/h';
 
-    if(data.weather[0].main == 'Clouds'){
-        weatherImg.src = 'img/clouds.png';
-    }else if(data.weather[0].main == 'Clear'){
-        weatherImg.src = 'img/clear.png';
-    }else if(data.weather[0].main == 'Rain'){
-        weatherImg.src = 'img/rain.png';
-    }else if(data.weather[0].main == 'Drizzle'){
-        weatherImg.src = 'img/drizzle.png';
-    }else if(data.weather[0].main == 'Snow'){
-        weatherImg.src = 'img/snow.png';
-    }else{
-        weatherImg.src = 'img/clouds.png';
-    }
+    const images = ['Clouds','Clear','Drizzle','Rain','Snow'];
+    
+    images.includes(data.weather[0].main) ? 
+    weatherImg.src = `img/${data.weather[0].main}.png` : 
+    weatherImg.src = 'img/Clouds.png'
 };
 
 getInfo('San Salvador');
