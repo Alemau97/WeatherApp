@@ -54,7 +54,7 @@ let getInfo = async (city) => {
     humidity.innerHTML = data.main.humidity + '%';
     windSpeed.innerHTML = data.wind.speed + ' km/h';
 
-    const images = ['Clouds','Clear','Drizzle','Rain','Snow'];
+    let images = ['Clouds','Clear','Drizzle','Rain','Snow'];
     
     images.includes(data.weather[0].main) ? 
     weatherImg.src = `img/${data.weather[0].main}.png` : 
