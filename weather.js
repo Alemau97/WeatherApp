@@ -55,11 +55,20 @@ const getInfo = async (city) => {
     const response = await fetch(apiURL + city + `&appid=${apiKey}`);
     const data = await response.json();
 
-    cityName.innerHTML = data.name;
-    temperature.innerHTML = Math.round(data.main.temp) + '°C';
-    skyCondition.innerHTML = data.weather[0].main;
-    humidity.innerHTML = data.main.humidity + '%';
-    windSpeed.innerHTML = data.wind.speed + ' km/h';
+    const elements = [cityName,temperature,skyCondition,humidity,windSpeed];
+    const errors = ["City not found",'no data','no data','no data','no data'];
+
+    if(city != data.name || city == ''){
+        elements.map((elements, key) => {
+            elements.innerHTML = errors[key];
+        });
+    }else{
+        cityName.innerHTML = data.name;
+        temperature.innerHTML = Math.round(data.main.temp) + '°C';
+        skyCondition.innerHTML = data.weather[0].main;
+        humidity.innerHTML = data.main.humidity + '%';
+        windSpeed.innerHTML = data.wind.speed + ' km/h';
+    }
 
     const images = ['Clouds','Clear','Drizzle','Rain','Snow'];
     
