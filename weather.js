@@ -18,24 +18,31 @@ modeImg.src = 'img/moon.png';
 
 //switch theme function
 
-function mode(){
-    (modeImg.src == 'img/moon.png') ? 
-        modeImg.src = 'img/moon.png' :
-        modeImg.src = 'img/sun.png'
+function toggleIcon(){
+    mainBody.classList.contains('main-dark') ?
+        modeImg.src = 'img/sun.png' :
+        modeImg.src = 'img/moon.png'
+};
+
+const toggleTheme = () => {
+    mainBody.classList.toggle('main-dark');
+    title.classList.toggle('title-dark');
 };
 
 //events
 modeImg.addEventListener('click', ()=>{
-    mainBody.classList.toggle('main-dark');
-    title.classList.toggle('title-dark');
-    mode();
+    toggleTheme();
+    toggleIcon();
 });
 
 search.addEventListener('click', () => {
-    let value = getCity.value;
+    const value = getCity.value;
     getInfo(value);
     getCity.value = '';
 });
+
+//validation
+
 
 //API
 
@@ -44,9 +51,9 @@ const apiURL = 'https://api.openweathermap.org/data/2.5/weather?&units=metric&q=
 
 //calling info from API
 
-let getInfo = async (city) => {
-    let response = await fetch(apiURL + city + `&appid=${apiKey}`);
-    let data = await response.json();
+const getInfo = async (city) => {
+    const response = await fetch(apiURL + city + `&appid=${apiKey}`);
+    const data = await response.json();
 
     cityName.innerHTML = data.name;
     temperature.innerHTML = Math.round(data.main.temp) + '°C';
@@ -54,7 +61,7 @@ let getInfo = async (city) => {
     humidity.innerHTML = data.main.humidity + '%';
     windSpeed.innerHTML = data.wind.speed + ' km/h';
 
-    let images = ['Clouds','Clear','Drizzle','Rain','Snow'];
+    const images = ['Clouds','Clear','Drizzle','Rain','Snow'];
     
     images.includes(data.weather[0].main) ? 
     weatherImg.src = `img/${data.weather[0].main}.png` : 
